@@ -449,7 +449,7 @@ export default function GifGallery() {
                 rel="noopener noreferrer"
                 className="no-underline"
               >
-                我的个人表情收藏库
+                柴郡猫表情收藏库
               </a>
               <Heart className="h-4 w-4 text-pink-500" />
             </p>
