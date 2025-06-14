@@ -393,7 +393,7 @@ export default function GifGallery() {
       <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-50 dark:from-gray-900 dark:via-purple-900 dark:to-gray-900 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-pink-600 dark:text-pink-400" />
-          <p className="text-lg text-gray-600 dark:text-gray-300">正在加载doro的小窝...</p>
+          <p className="text-lg text-gray-600 dark:text-gray-300">正在加载柴郡的小窝...</p>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">正在获取所有GIF文件，请稍候...</p>
         </div>
       </div>
@@ -432,7 +432,7 @@ export default function GifGallery() {
               />
               <h1 className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
                 <a 
-                  href="https://doro.1143520.xyz/" 
+                  href="https://mao.1143520.xyz/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="no-underline"
@@ -946,7 +946,7 @@ export default function GifGallery() {
         <footer className="mt-16 text-center text-sm text-gray-500 dark:text-gray-400">
           <div className="flex items-center justify-center gap-2 mb-2">
             <Heart className="h-4 w-4 text-pink-500" />
-            <span>Made with love by doro</span>
+            <span>Made with love by 柴郡</span>
             <Heart className="h-4 w-4 text-pink-500" />
           </div>
           <p>欢迎来到我的小窝，这里收藏着我喜欢的表情~</p>
