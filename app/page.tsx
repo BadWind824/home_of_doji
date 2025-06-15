@@ -128,17 +128,17 @@ export default function GifGallery() {
       setLoading(true)
       setError(null)
 
-      // 首先获取仓库的默认分支信息
-      const repoResponse = await fetch("https://api.github.com/repos/1143520/chaijun")
+      // 使用环境变量获取仓库信息
+      const repoResponse = await fetch(`https://api.github.com/repos/${process.env.GITHUB_REPO}`)
       if (!repoResponse.ok) {
         throw new Error("Failed to fetch repository info")
       }
       const repoData = await repoResponse.json()
-      const defaultBranch = repoData.default_branch || "main"
+      const defaultBranch = process.env.GITHUB_BRANCH || repoData.default_branch || "main"
 
-      // 使用Git Trees API获取所有文件，递归获取mao文件夹
+      // 使用Git Trees API获取所有文件
       const treeResponse = await fetch(
-        `https://api.github.com/repos/1143520/chaijun/git/trees/${defaultBranch}?recursive=1`,
+        `https://api.github.com/repos/${process.env.GITHUB_REPO}/git/trees/${defaultBranch}?recursive=1`,
       )
 
       if (!treeResponse.ok) {
@@ -147,11 +147,11 @@ export default function GifGallery() {
 
       const treeData: GitHubTree = await treeResponse.json()
 
-      // 过滤出mao文件夹中的图片文件
+      // 过滤指定路径的图片文件
       const gifFiles = treeData.tree.filter(
         (item) =>
           item.type === "blob" && // 确保是文件而不是文件夹
-          item.path.startsWith("mao/") && // 在mao文件夹中
+          item.path.startsWith(`${process.env.IMAGE_PATH}/`) && // 使用环境变量指定的路径
           /\.(gif|jpg|jpeg|png|webp|avif|svg)$/i.test(item.path.toLowerCase()) // 支持多种图片格式
       )
 
@@ -163,8 +163,8 @@ export default function GifGallery() {
         const fileType = fileName.split('.').pop()?.toLowerCase() || 'unknown'
         return {
           name: fileName,
-          url: `https://raw.githubusercontent.com/1143520/chaijun/${defaultBranch}/${file.path}`,
-          cdnUrl: `https://hub.gitmirror.com/raw.githubusercontent.com/1143520/chaijun/${defaultBranch}/${file.path}`,
+          url: `https://raw.githubusercontent.com/${process.env.GITHUB_REPO}/${defaultBranch}/${file.path}`,
+          cdnUrl: `https://hub.gitmirror.com/raw.githubusercontent.com/${process.env.GITHUB_REPO}/${defaultBranch}/${file.path}`,
           size: file.size || 0,
           type: fileType
         }
@@ -426,30 +426,30 @@ export default function GifGallery() {
           <div className="text-center flex-1">
             <div className="flex items-center justify-center gap-3 mb-4">
               <img
-                src="https://jsd.chatbtc.cn.eu.org/gh/manji1143/picx-images-hosting@master/paste/picx-1B9BFE309BB818923ADAE3C76350B23E-removebg-preview.3rbhhkvfr3.avif"
-                alt="柴郡猫"
+                src={process.env.APP_ICON}
+                alt={process.env.APP_TITLE}
                 className="w-12 h-12 rounded-full object-cover border-2 border-pink-200 dark:border-pink-700 shadow-lg"
               />
               <h1 className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
                 <a 
-                  href="https://mao.1143520.xyz/" 
+                  href={process.env.APP_LINK}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="no-underline"
                 >
-                  柴郡 の 小窝
+                  {process.env.APP_TITLE}
                 </a>
               </h1>
             </div>
             <p className="text-gray-600 dark:text-gray-300 mb-4 flex items-center justify-center gap-2">
               <Heart className="h-4 w-4 text-pink-500" />
               <a 
-                href="https://github.com/1143520/chaijun" 
+                href={`https://github.com/${process.env.GITHUB_REPO}`}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="no-underline"
               >
-                柴郡猫表情收藏库
+                {process.env.APP_TITLE}表情收藏库
               </a>
               <Heart className="h-4 w-4 text-pink-500" />
             </p>
