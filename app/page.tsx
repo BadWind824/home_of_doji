@@ -393,7 +393,7 @@ export default function GifGallery() {
       <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-50 dark:from-gray-900 dark:via-purple-900 dark:to-gray-900 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-pink-600 dark:text-pink-400" />
-          <p className="text-lg text-gray-600 dark:text-gray-300">正在加载柴郡的小窝...</p>
+          <p className="text-lg text-gray-600 dark:text-gray-300">正在加载doro的小窝...</p>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">正在获取所有GIF文件，请稍候...</p>
         </div>
       </div>

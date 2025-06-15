@@ -35,10 +35,8 @@ Continue building your app on:
 
 ## 环境变量
 
-应用支持以下环境变量配置：
+应用支持以下环境变量配置：要修改图片网站信息，直接fork修改app\layout.tsx和app\layout.tsx
 
-- `APP_TITLE`: 应用标题（默认: "Home of Doji"）
-- `IMAGE_PATH`: 图片仓库路径（默认: "https://raw.githubusercontent.com/1143520/chaijun/main/mao"）
 
 ## Docker 部署
 
@@ -47,11 +45,7 @@ Continue building your app on:
 ```bash
 docker pull ghcr.io/[你的GitHub用户名]/home_of_doji:main
 
-docker run -d \
-  -p 1143:1143 \
-  -e APP_TITLE="自定义标题" \
-  -e IMAGE_PATH="https://your-image-path" \
-  ghcr.io/[你的GitHub用户名]/home_of_doji:main
+docker run -d -p 1143:1143 ghcr.io/1143520/home_of_doji:main
 ```
 
 ### 本地构建
@@ -72,11 +66,7 @@ docker build -t home_of_doji .
 3. 运行容器
 
 ```bash
-docker run -d \
-  -p 1143:1143 \
-  -e APP_TITLE="自定义标题" \
-  -e IMAGE_PATH="https://your-image-path" \
-  home_of_doji
+docker run -d -p 1143:1143 ghcr.io/1143520/home_of_doji:main
 ```
 
 ## 开发
