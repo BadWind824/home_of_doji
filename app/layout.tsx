@@ -4,14 +4,16 @@ import { ThemeProvider } from "@/components/theme-provider"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: process.env.NEXT_PUBLIC_APP_TITLE,
+  title: "柴郡 の 小窝",
   description: "柴郡猫的个人GIF图片收藏库，来自GitHub仓库的精美动图集合",
   icons: {
-    icon: process.env.NEXT_PUBLIC_APP_ICON,
-    shortcut: process.env.NEXT_PUBLIC_APP_ICON,
-    apple: process.env.NEXT_PUBLIC_APP_ICON,
+    icon: "https://jsd.chatbtc.cn.eu.org/gh/manji1143/picx-images-hosting@master/paste/picx-1B9BFE309BB818923ADAE3C76350B23E-removebg-preview.3rbhhkvfr3.avif",
+    shortcut:
+      "https://jsd.chatbtc.cn.eu.org/gh/manji1143/picx-images-hosting@master/paste/picx-1B9BFE309BB818923ADAE3C76350B23E-removebg-preview.3rbhhkvfr3.avif",
+    apple:
+      "https://jsd.chatbtc.cn.eu.org/gh/manji1143/picx-images-hosting@master/paste/picx-1B9BFE309BB818923ADAE3C76350B23E-removebg-preview.3rbhhkvfr3.avif",
   },
-  generator: 'v0.dev'
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -24,7 +26,7 @@ export default function RootLayout({
       <head>
         <link
           rel="icon"
-          href={process.env.NEXT_PUBLIC_APP_ICON}
+          href="https://jsd.chatbtc.cn.eu.org/gh/manji1143/picx-images-hosting@master/paste/picx-1B9BFE309BB818923ADAE3C76350B23E-removebg-preview.3rbhhkvfr3.avif"
         />
       </head>
       <body>
