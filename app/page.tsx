@@ -25,6 +25,10 @@ import {
 import { useToast } from "@/hooks/use-toast"
 import { useTheme } from "next-themes"
 import { Toaster } from "@/components/ui/toaster"
+import getConfig from 'next/config'
+
+// 获取运行时配置
+const { publicRuntimeConfig } = getConfig()
 
 interface GitHubFile {
   name: string
@@ -128,17 +132,17 @@ export default function GifGallery() {
       setLoading(true)
       setError(null)
 
-      // 使用环境变量获取仓库信息
-      const repoResponse = await fetch(`https://api.github.com/repos/${process.env.GITHUB_REPO}`)
+      // 使用运行时配置
+      const repoResponse = await fetch(`https://api.github.com/repos/${publicRuntimeConfig.GITHUB_REPO}`)
       if (!repoResponse.ok) {
         throw new Error("Failed to fetch repository info")
       }
       const repoData = await repoResponse.json()
-      const defaultBranch = process.env.GITHUB_BRANCH || repoData.default_branch || "main"
+      const defaultBranch = publicRuntimeConfig.GITHUB_BRANCH || repoData.default_branch || "main"
 
       // 使用Git Trees API获取所有文件
       const treeResponse = await fetch(
-        `https://api.github.com/repos/${process.env.GITHUB_REPO}/git/trees/${defaultBranch}?recursive=1`,
+        `https://api.github.com/repos/${publicRuntimeConfig.GITHUB_REPO}/git/trees/${defaultBranch}?recursive=1`,
       )
 
       if (!treeResponse.ok) {
@@ -151,7 +155,7 @@ export default function GifGallery() {
       const gifFiles = treeData.tree.filter(
         (item) =>
           item.type === "blob" && // 确保是文件而不是文件夹
-          item.path.startsWith(`${process.env.IMAGE_PATH}/`) && // 使用环境变量指定的路径
+          item.path.startsWith(`${publicRuntimeConfig.IMAGE_PATH}/`) && // 使用环境变量指定的路径
           /\.(gif|jpg|jpeg|png|webp|avif|svg)$/i.test(item.path.toLowerCase()) // 支持多种图片格式
       )
 
@@ -163,8 +167,8 @@ export default function GifGallery() {
         const fileType = fileName.split('.').pop()?.toLowerCase() || 'unknown'
         return {
           name: fileName,
-          url: `https://raw.githubusercontent.com/${process.env.GITHUB_REPO}/${defaultBranch}/${file.path}`,
-          cdnUrl: `https://hub.gitmirror.com/raw.githubusercontent.com/${process.env.GITHUB_REPO}/${defaultBranch}/${file.path}`,
+          url: `https://raw.githubusercontent.com/${publicRuntimeConfig.GITHUB_REPO}/${defaultBranch}/${file.path}`,
+          cdnUrl: `https://hub.gitmirror.com/raw.githubusercontent.com/${publicRuntimeConfig.GITHUB_REPO}/${defaultBranch}/${file.path}`,
           size: file.size || 0,
           type: fileType
         }
