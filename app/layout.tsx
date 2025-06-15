@@ -4,16 +4,14 @@ import { ThemeProvider } from "@/components/theme-provider"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "柴郡 の 小窝",
+  title: process.env.APP_TITLE || "柴郡 の 小窝",
   description: "柴郡猫的个人GIF图片收藏库，来自GitHub仓库的精美动图集合",
   icons: {
-    icon: "https://jsd.chatbtc.cn.eu.org/gh/manji1143/picx-images-hosting@master/paste/picx-1B9BFE309BB818923ADAE3C76350B23E-removebg-preview.3rbhhkvfr3.avif",
-    shortcut:
-      "https://jsd.chatbtc.cn.eu.org/gh/manji1143/picx-images-hosting@master/paste/picx-1B9BFE309BB818923ADAE3C76350B23E-removebg-preview.3rbhhkvfr3.avif",
-    apple:
-      "https://jsd.chatbtc.cn.eu.org/gh/manji1143/picx-images-hosting@master/paste/picx-1B9BFE309BB818923ADAE3C76350B23E-removebg-preview.3rbhhkvfr3.avif",
+    icon: process.env.APP_ICON,
+    shortcut: process.env.APP_ICON,
+    apple: process.env.APP_ICON,
   },
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -26,7 +24,7 @@ export default function RootLayout({
       <head>
         <link
           rel="icon"
-          href="https://jsd.chatbtc.cn.eu.org/gh/manji1143/picx-images-hosting@master/paste/picx-1B9BFE309BB818923ADAE3C76350B23E-removebg-preview.3rbhhkvfr3.avif"
+          href={process.env.APP_ICON}
         />
       </head>
       <body>

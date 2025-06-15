@@ -128,55 +128,36 @@ export default function GifGallery() {
       setLoading(true)
       setError(null)
 
-      // 首先获取仓库的默认分支信息
-      const repoResponse = await fetch("https://api.github.com/repos/1143520/chaijun")
-      if (!repoResponse.ok) {
-        throw new Error("Failed to fetch repository info")
-      }
-      const repoData = await repoResponse.json()
-      const defaultBranch = repoData.default_branch || "main"
-
-      // 使用Git Trees API获取所有文件，递归获取mao文件夹
-      const treeResponse = await fetch(
-        `https://api.github.com/repos/1143520/chaijun/git/trees/${defaultBranch}?recursive=1`,
-      )
-
-      if (!treeResponse.ok) {
-        throw new Error("Failed to fetch repository tree")
+      // 使用环境变量中的图片路径
+      const imagePath = process.env.IMAGE_PATH
+      if (!imagePath) {
+        throw new Error("Image path not configured")
       }
 
-      const treeData: GitHubTree = await treeResponse.json()
+      // 从图片路径中获取图片文件
+      const response = await fetch(imagePath)
+      if (!response.ok) {
+        throw new Error("Failed to fetch images")
+      }
 
-      // 过滤出mao文件夹中的图片文件
-      const gifFiles = treeData.tree.filter(
-        (item) =>
-          item.type === "blob" && // 确保是文件而不是文件夹
-          item.path.startsWith("mao/") && // 在mao文件夹中
-          /\.(gif|jpg|jpeg|png|webp|avif|svg)$/i.test(item.path.toLowerCase()) // 支持多种图片格式
-      )
-
-      console.log(`找到 ${gifFiles.length} 个图片文件`)
-
+      const files = await response.json()
+      
       // 转换为我们需要的格式
-      const gifItems: GifItem[] = gifFiles.map((file) => {
-        const fileName = file.path.split("/").pop() || file.path
-        const fileType = fileName.split('.').pop()?.toLowerCase() || 'unknown'
-        return {
-          name: fileName,
-          url: `https://raw.githubusercontent.com/1143520/chaijun/${defaultBranch}/${file.path}`,
-          cdnUrl: `https://hub.gitmirror.com/raw.githubusercontent.com/1143520/chaijun/${defaultBranch}/${file.path}`,
-          size: file.size || 0,
-          type: fileType
-        }
-      })
+      const gifItems: GifItem[] = files.map((file: any) => ({
+        name: file.name,
+        url: file.download_url,
+        cdnUrl: file.download_url,
+        size: file.size || 0,
+        type: file.name.split('.').pop()?.toLowerCase() || 'unknown'
+      }))
 
       // 按文件名排序
       gifItems.sort((a, b) => a.name.localeCompare(b.name))
 
       setGifs(gifItems)
-      setFilteredGifs(gifItems) // 初始化过滤后的列表
+      setFilteredGifs(gifItems)
     } catch (err) {
-      console.error("获取GIF文件失败:", err)
+      console.error("获取图片文件失败:", err)
       setError(err instanceof Error ? err.message : "An error occurred")
     } finally {
       setLoading(false)
@@ -426,18 +407,18 @@ export default function GifGallery() {
           <div className="text-center flex-1">
             <div className="flex items-center justify-center gap-3 mb-4">
               <img
-                src="https://jsd.chatbtc.cn.eu.org/gh/manji1143/picx-images-hosting@master/paste/picx-1B9BFE309BB818923ADAE3C76350B23E-removebg-preview.3rbhhkvfr3.avif"
-                alt="柴郡猫"
+                src={process.env.APP_ICON}
+                alt={process.env.APP_TITLE}
                 className="w-12 h-12 rounded-full object-cover border-2 border-pink-200 dark:border-pink-700 shadow-lg"
               />
               <h1 className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
                 <a 
-                  href="https://mao.1143520.xyz/" 
+                  href={process.env.APP_URL}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="no-underline"
                 >
-                  柴郡 の 小窝
+                  {process.env.APP_TITLE}
                 </a>
               </h1>
             </div>
