@@ -4,14 +4,14 @@ import { ThemeProvider } from "@/components/theme-provider"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: process.env.APP_TITLE,
+  title: process.env.NEXT_PUBLIC_APP_TITLE,
   description: "柴郡猫的个人GIF图片收藏库，来自GitHub仓库的精美动图集合",
   icons: {
-    icon: process.env.APP_ICON,
-    shortcut: process.env.APP_ICON,
-    apple: process.env.APP_ICON,
+    icon: process.env.NEXT_PUBLIC_APP_ICON,
+    shortcut: process.env.NEXT_PUBLIC_APP_ICON,
+    apple: process.env.NEXT_PUBLIC_APP_ICON,
   },
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -24,7 +24,7 @@ export default function RootLayout({
       <head>
         <link
           rel="icon"
-          href={process.env.APP_ICON}
+          href={process.env.NEXT_PUBLIC_APP_ICON}
         />
       </head>
       <body>
