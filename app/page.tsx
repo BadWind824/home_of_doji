@@ -129,7 +129,7 @@ export default function GifGallery() {
       setError(null)
 
       // 首先获取仓库的默认分支信息
-      const repoResponse = await fetch("https://api.github.com/repos/1143520/chaijun")
+      const repoResponse = await fetch("https://api.github.com/repos/1143520/doro")
       if (!repoResponse.ok) {
         throw new Error("Failed to fetch repository info")
       }
@@ -138,7 +138,7 @@ export default function GifGallery() {
 
       // 使用Git Trees API获取所有文件，递归获取mao文件夹
       const treeResponse = await fetch(
-        `https://api.github.com/repos/1143520/chaijun/git/trees/${defaultBranch}?recursive=1`,
+        `https://api.github.com/repos/1143520/doro/git/trees/${defaultBranch}?recursive=1`,
       )
 
       if (!treeResponse.ok) {
@@ -151,7 +151,7 @@ export default function GifGallery() {
       const gifFiles = treeData.tree.filter(
         (item) =>
           item.type === "blob" && // 确保是文件而不是文件夹
-          item.path.startsWith("mao/") && // 在mao文件夹中
+          item.path.startsWith("loop/") && // 在mao文件夹中
           /\.(gif|jpg|jpeg|png|webp|avif|svg)$/i.test(item.path.toLowerCase()) // 支持多种图片格式
       )
 
@@ -163,8 +163,8 @@ export default function GifGallery() {
         const fileType = fileName.split('.').pop()?.toLowerCase() || 'unknown'
         return {
           name: fileName,
-          url: `https://raw.githubusercontent.com/1143520/chaijun/${defaultBranch}/${file.path}`,
-          cdnUrl: `https://hub.gitmirror.com/raw.githubusercontent.com/1143520/chaijun/${defaultBranch}/${file.path}`,
+          url: `https://raw.githubusercontent.com/1143520/doro/${defaultBranch}/${file.path}`,
+          cdnUrl: `https://hub.gitmirror.com/raw.githubusercontent.com/1143520/doro/${defaultBranch}/${file.path}`,
           size: file.size || 0,
           type: fileType
         }
@@ -426,30 +426,30 @@ export default function GifGallery() {
           <div className="text-center flex-1">
             <div className="flex items-center justify-center gap-3 mb-4">
               <img
-                src="https://jsd.chatbtc.cn.eu.org/gh/manji1143/picx-images-hosting@master/paste/picx-1B9BFE309BB818923ADAE3C76350B23E-removebg-preview.3rbhhkvfr3.avif"
-                alt="柴郡猫"
+                src="https://img.meituan.net/video/1f498ca05808be0e7a8a837d4e51e995233496.png"
+                alt="doro"
                 className="w-12 h-12 rounded-full object-cover border-2 border-pink-200 dark:border-pink-700 shadow-lg"
               />
               <h1 className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
                 <a 
-                  href="https://mao.1143520.xyz/" 
+                  href="https://doro.1143520.xyz/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="no-underline"
                 >
-                  柴郡 の 小窝
+                  doro の 小窝
                 </a>
               </h1>
             </div>
             <p className="text-gray-600 dark:text-gray-300 mb-4 flex items-center justify-center gap-2">
               <Heart className="h-4 w-4 text-pink-500" />
               <a 
-                href="https://github.com/1143520/chaijun" 
+                href="https://github.com/1143520/doro" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="no-underline"
               >
-                柴郡猫表情收藏库
+                doro表情收藏库
               </a>
               <Heart className="h-4 w-4 text-pink-500" />
             </p>
@@ -946,13 +946,13 @@ export default function GifGallery() {
         <footer className="mt-16 text-center text-sm text-gray-500 dark:text-gray-400">
           <div className="flex items-center justify-center gap-2 mb-2">
             <Heart className="h-4 w-4 text-pink-500" />
-            <span>Made with love by 柴郡</span>
+            <span>Made with love by doro</span>
             <Heart className="h-4 w-4 text-pink-500" />
           </div>
           <p>欢迎来到我的小窝，这里收藏着我喜欢的表情~</p>
           <p className="mt-2">
             <a
-              href="https://github.com/1143520/chaijun"
+              href="https://github.com/1143520/doro"
               target="_blank"
               rel="noopener noreferrer"
               className="text-pink-500 hover:underline flex items-center justify-center gap-1"
