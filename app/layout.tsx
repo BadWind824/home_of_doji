@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     shortcut: process.env.APP_ICON,
     apple: process.env.APP_ICON,
   },
-  generator: 'v0.dev'
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({

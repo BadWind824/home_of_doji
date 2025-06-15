@@ -54,4 +54,8 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             APP_TITLE=${{ env.APP_TITLE }}
+            APP_ICON=${{ vars.APP_ICON }}
+            APP_LINK=${{ vars.APP_LINK }}
+            GITHUB_REPO=${{ vars.GITHUB_REPO }}
+            GITHUB_BRANCH=${{ vars.GITHUB_BRANCH }}
             IMAGE_PATH=${{ env.IMAGE_PATH }}
