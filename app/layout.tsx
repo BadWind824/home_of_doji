@@ -4,7 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: process.env.APP_TITLE || "柴郡 の 小窝",
+  title: process.env.APP_TITLE,
   description: "柴郡猫的个人GIF图片收藏库，来自GitHub仓库的精美动图集合",
   icons: {
     icon: process.env.APP_ICON,
