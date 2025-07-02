@@ -443,7 +443,12 @@ export default function GifGallery() {
             </div>
             <p className="text-gray-600 dark:text-gray-300 mb-4 flex items-center justify-center gap-2">
               <Heart className="h-4 w-4 text-pink-500" />
-              
+              <a 
+                href="https://badwind824.top" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="no-underline"
+              >
                 doro表情收藏库
               </a>
               <Heart className="h-4 w-4 text-pink-500" />
@@ -953,7 +958,7 @@ export default function GifGallery() {
               className="text-pink-500 hover:underline flex items-center justify-center gap-1"
             >
               <Github className="h-3 w-3" />
-              
+              一只南风
             </a>
           </p>
         </footer>
