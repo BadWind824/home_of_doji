@@ -953,7 +953,7 @@ export default function GifGallery() {
               className="text-pink-500 hover:underline flex items-center justify-center gap-1"
             >
               <Github className="h-3 w-3" />
-              GitHub仓库
+              
             </a>
           </p>
         </footer>
