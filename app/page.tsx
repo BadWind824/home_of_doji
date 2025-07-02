@@ -432,7 +432,7 @@ export default function GifGallery() {
               />
               <h1 className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
                 <a 
-                  href="https://badwind824.top" 
+                  href="https://doro.1143520.xyz/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="no-underline"
