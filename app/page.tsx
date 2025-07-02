@@ -952,7 +952,7 @@ export default function GifGallery() {
           <p>欢迎来到我的小窝，这里收藏着我喜欢的表情~</p>
           <p className="mt-2">
             <a
-              href="https://github.com/1143520/doro"
+              href="https://badwind824.top"
               target="_blank"
               rel="noopener noreferrer"
               className="text-pink-500 hover:underline flex items-center justify-center gap-1"
